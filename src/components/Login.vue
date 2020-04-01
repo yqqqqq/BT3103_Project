@@ -24,16 +24,23 @@
 	<div class="avtar">
 		<img alt="Avtar" src="/assets/avtar.png" />
 	</div>
-			<form>
-					<input type="text" class="text" value="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" >
-						<div class="key">
-					<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
-						</div>
-			</form>
-	<div class="signin">
-		<a href="renvi.html"><input type="submit" value="Login"></a>
-	</div>
+	<form action="/login" method="post">
+		<input type="text" class="text" placeholder="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" name="username" required/>
+			<!-- <div class="key"> -->
+		<input type="password" placeholder="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" name="pasword" required/>
+			<!-- </div> -->
+		<input type="emptyplace">
+		<button>Login</button>
+	</form>
+	<!-- <form class="signin" action="/login" method="post"> -->
+		<!-- <a href="renvi.html"> -->
+			<!-- <input type="submit" value="Login"> -->
+			<!-- </a> -->
+	<!-- </form> -->
 </div>
+<div class="signup">
+		<router-link id="signupline" to='/signup'>Don't have an account? Sign up here</router-link>
+	</div>
 <div class="copy-rights">
 		<p>Copyright &copy; 2020. 404 Studio All rights reserved</p>
 	</div>
@@ -191,10 +198,33 @@ input[type="password"]{
 	border: none;
 	font-weight: 100;
 	border-bottom: 1px solid#484856;
-	margin-bottom: 3em;
+	margin-bottom: 0em;
  }
+input[type="emptyplace"]{
+	background: url(/assets/key.png) no-repeat 10px 23px;
+	border: none;
+	margin-bottom: 3em;
+}
 .key {
 	background: url(/assets/pass.png) no-repeat 500px 17px;
+}
+button {
+	font-size: 30px;
+	color: #fff;
+	outline: none;
+	border: none;
+	background: #0F1416;
+	width: 100%;
+	padding: 18px 0;
+	border-bottom-left-radius: 15px;
+	-webkit-border-bottom-left-radius: 15px;
+	-moz-border-bottom-left-radius: 15px;
+	-o-border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	-webkit-border-bottom-right-radius: 15px;
+	-moz-border-bottom-right-radius: 15px;
+	-o-border-bottom-right-radius: 15px;
+	cursor: pointer;
 }
 input[type="submit"]{
 	font-size: 30px;
