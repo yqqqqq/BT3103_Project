@@ -129,11 +129,11 @@ background: url('/assets/close.png') no-repeat 0px 0px;
 h1 {
 	font-family: 'Exo 2', sans-serif;
 	text-align: center;
-	padding-top: 0em;
+	padding-top: 1em;
 	font-weight: 600;
 	color: #FFFFFF;
 	font-size: 3.2em;
-	margin-top: -100px;
+	margin-top: 0px;
 }
 .login-form {
 	background: #1b2528;
