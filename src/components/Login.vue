@@ -82,7 +82,7 @@ export default {
 					}
 				})
 				if (successful==false) {
-					alert("Wrong username and password");
+					alert("Invalid username and password");
 				}
 			});
 		}
