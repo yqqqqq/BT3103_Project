@@ -25,12 +25,12 @@
 		<img alt="Avtar" src="/assets/avtar.png" />
 	</div>
 	<form action="/login" method="post">
-		<input type="text" class="text" placeholder="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" name="username" required/>
+		<input type="text" class="text" v-model.lazy="user.name" placeholder="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" name="username" required/>
 			<!-- <div class="key"> -->
-		<input type="password" placeholder="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" name="pasword" required/>
+		<input type="password" v-model.lazy="user.password" placeholder="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" name="pasword" required/>
 			<!-- </div> -->
 		<input type="emptyplace">
-		<button>Login</button>
+		<button v-on:click.prevent="login">Login</button>
 	</form>
 	<!-- <form class="signin" action="/login" method="post"> -->
 		<!-- <a href="renvi.html"> -->
@@ -50,19 +50,43 @@
 </template>
 
 <script>
+import database from '../firebase.js'
 addEventListener("load", function() {setTimeout(hideURLbar, 0);}, false); 
 function hideURLbar(){ window.scrollTo(0,1); }
 
 export default {
     data() {
-        return {};
+        return {
+			user:{
+				name:'',
+				password:''
+			}
+		};
     },
     ready() {
         let scriptEl = document.createElement('script');
         scriptEl.setAttribute('src', 'http://ajax.useso.com/ajax/libs/jquery/1.11.0/jquery.min.js');
         scriptEl.setAttribute('data-some-param', 'paramvalue');
         this.$els.scriptHolder.appendChild(scriptEl);
-    }
+	},
+	methods:{
+		login: function() {
+			database.collection('password-file').get().then((querySnapShot)=>{
+				let databaseUser={}
+				let successful=false
+				querySnapShot.forEach(doc=>{
+					databaseUser=doc.data()
+					if(this.user.name==databaseUser.name && this.user.password==databaseUser.password) {
+						alert("Login is successful! Have a wonderful experience with 404!");
+						successful=true;
+					}
+				})
+				if (successful==false) {
+					alert("Wrong username and password");
+				}
+			});
+		}
+	}
 }
 
 </script>
