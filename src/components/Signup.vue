@@ -17,11 +17,11 @@
 		<img alt="Avtar" src="/assets/avtar.png" />
 	</div>
 	<form action="/login" method="post">
-		<input type="text" class="text" placeholder="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" name="username" required/>
-		<input type="password" placeholder="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" name="password" required/>
+		<input type="text" class="text" v-model.lazy="user.name" placeholder="Username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" name="username" required/>
+		<input type="password" v-model.lazy="user.password" placeholder="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" name="password" required/>
 		<input type="password" placeholder="Confirm Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Confirm Password';}" name="confirmpassword" required/>
 		<input type="emptyplace">
-		<button>Signup</button>
+		<button v-on:click.prevent="addUser">Signup</button>
 	</form>
 </div>
 <div class="copy-rights">
@@ -33,19 +33,33 @@
 </template>
 
 <script>
+import database from '../firebase.js'
 addEventListener("load", function() {setTimeout(hideURLbar, 0);}, false); 
 function hideURLbar(){ window.scrollTo(0,1); }
 
 export default {
     data() {
-        return {};
+        return {
+			user:{
+				name:'',
+				password:''
+			}
+		};
     },
     ready() {
         let scriptEl = document.createElement('script');
         scriptEl.setAttribute('src', 'http://ajax.useso.com/ajax/libs/jquery/1.11.0/jquery.min.js');
         scriptEl.setAttribute('data-some-param', 'paramvalue');
         this.$els.scriptHolder.appendChild(scriptEl);
-    }
+	},
+	methods:{
+		addUser: function() {
+			database.collection('password-file').doc().set(this.user);
+			this.user.name="";
+			this.user.password="";
+			alert("User Account created successful! Have a wonderful experience with 404!")
+		}
+	}
 }
 
 </script>
