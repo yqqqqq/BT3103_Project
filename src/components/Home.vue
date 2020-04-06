@@ -10,9 +10,9 @@
         </tr>
         <tr v-for="(task, index) in tasksList" v-bind:key="task.id" >
             <td><h2>{{task.Category}} </h2><td>
-            <td><h2>{{task.Name}}</h2></td>
+            <td><h2><router-link :to="{path:'task/'+task.id}">{{task.Name}}</router-link></h2></td>
             <td><h2>{{task.Deadline.toDate().toString().substring(4,21)}} </h2></td>
-            <td><button name="delete" v-bind:id="task.id" v-on:click="deleteItem(index,task)" >Delete</button></td>
+            <td><button name="delete" v-bind:id="task.id" v-on:click="deleteItem(index,task)">Delete</button></td>
         </tr>
     </table>
   </div>
