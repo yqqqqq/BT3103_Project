@@ -5,9 +5,6 @@
     <router-view></router-view>
     <app-footer></app-footer>
 
-    <app-header v-bind:title="msg"></app-header>
-    <router-view></router-view>
-
   </div>
 </template>
 
@@ -27,8 +24,6 @@ export default {
     'app-header': Header,
     'app-footer': Footer,
 
-    'app-header':Header
-    // 'login':Login
 
   }
 }
